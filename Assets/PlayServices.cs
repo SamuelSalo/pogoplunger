@@ -2,6 +2,7 @@ using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
+using GooglePlayGames.BasicApi.SavedGame;
 
 public class PlayServices
 {
@@ -24,6 +25,21 @@ public class PlayServices
                 SignInStatus.NotAuthenticated => "Not authenticated! Sign in!",
                 _ => throw new System.NotImplementedException(),
             };
+        });
+    }
+
+    public static void PostLeaderboardScore(int _score)
+    {
+        Social.ReportScore(_score, "CgkI9syNqfAYEAIQAA", (bool success) => {
+            
+            if(success)
+            {
+                Debug.Log("Posted score to leaderboard: " + _score);
+            }
+            else
+            {
+                Debug.LogWarning("Failed to post score to leaderboard: " + _score);
+            }
         });
     }
 }

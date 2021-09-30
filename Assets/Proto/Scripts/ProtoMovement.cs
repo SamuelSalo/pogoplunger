@@ -27,6 +27,11 @@ public class ProtoMovement : MonoBehaviour
         {
             rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
         }
+        if(collision.transform.CompareTag("Floor"))
+        {
+            rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
+            GameManager.instance.AddScore();
+        }
     }
 
     public void Up()

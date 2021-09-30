@@ -35,6 +35,7 @@ namespace GooglePlayGames.BasicApi
         /// </summary>
         public static readonly PlayGamesClientConfiguration DefaultConfiguration =
             new Builder()
+                .EnableSavedGames()
                 .Build();
 
         /// <summary>
