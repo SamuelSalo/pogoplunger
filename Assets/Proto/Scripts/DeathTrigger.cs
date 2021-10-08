@@ -9,8 +9,9 @@ public class DeathTrigger : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player") && !passable)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            //TODO proper death
+            GameManager.instance.Death();
+            transform.parent.GetComponent<PlatformGeneration>().CreatePlatform();
+            passable = true;
         }
     }
 }

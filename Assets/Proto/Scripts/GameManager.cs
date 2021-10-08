@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,15 @@ public class GameManager : MonoBehaviour
 
     private int currentScore = 0;
     public TMP_Text scoreText;
+    public TMP_Text highscoreText;
+    public GameObject deathMenu;
+    public GameObject gameUI;
+    public Rigidbody2D player;
 
+    private void Start()
+    {
+        highscoreText.text = "Highscore: " + PlayerPrefs.GetInt("PogoPlunger_Highscore");
+    }
     public void AddScore()
     {
         currentScore++;
@@ -43,6 +52,27 @@ public class GameManager : MonoBehaviour
             PlayServices.PostLeaderboardScore(currentScore);
             //todo new highscore fx
         }
-        
+
+        deathMenu.SetActive(true);
+        gameUI.SetActive(false);
+        player.constraints = RigidbodyConstraints2D.FreezeAll;
+        AdManager.instance.ShowDeathInterstitial();
+    }
+
+    public void Resume()
+    {
+        player.constraints = RigidbodyConstraints2D.FreezeRotation;
+        deathMenu.SetActive(false);
+        gameUI.SetActive(true);
+    }
+
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

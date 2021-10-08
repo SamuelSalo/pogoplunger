@@ -31,11 +31,11 @@ public class PlatformGeneration : MonoBehaviour
 
         if (platformCount < maxPlatformCount)
         {
-            CreatePlatform();
+            BuildPlatform();
         }
     }
 
-    private void CreatePlatform()
+    private void BuildPlatform()
     {
         platformCount++;
         var platform = Instantiate(platformPrefab, (Vector2)transform.position + new Vector2(0, -5), Quaternion.identity);
@@ -44,20 +44,23 @@ public class PlatformGeneration : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player"))
+            CreatePlatform();
+    }
+
+    public void CreatePlatform()
+    {
+        transform.GetChild(0).GetComponent<DeathTrigger>().passable = true;
+
+        if (platforms.IndexOf(gameObject) == 3 && !generated)
         {
-            transform.GetChild(0).GetComponent<DeathTrigger>().passable = true;
+            generated = true;
+            var rem = platforms[0];
+            platforms.Remove(rem);
+            Destroy(rem);
 
-            if(platforms.IndexOf(gameObject) == 3 && !generated)
-            {
-                generated = true;
-                var rem = platforms[0];
-                platforms.Remove(rem);
-                Destroy(rem);
-
-                platforms.ShiftLeft(1);
-                platforms[4].GetComponent<PlatformGeneration>().CreatePlatform();
-            }
+            platforms.ShiftLeft(1);
+            platforms[4].GetComponent<PlatformGeneration>().BuildPlatform();
         }
     }
 }

@@ -3,12 +3,14 @@ using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
+using GoogleMobileAds.Api;
 
 public class PlayServices
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Login()
     {
+        
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
             SignInStatus status = result;
 
@@ -26,10 +28,13 @@ public class PlayServices
                 _ => throw new System.NotImplementedException(),
             };
         });
+
+        MobileAds.Initialize(initStatus => { });
     }
 
     public static void PostLeaderboardScore(int _score)
     {
+#if !UNITY_EDITOR
         Social.ReportScore(_score, "CgkI9syNqfAYEAIQAA", (bool success) => {
             
             if(success)
@@ -41,5 +46,6 @@ public class PlayServices
                 Debug.LogWarning("Failed to post score to leaderboard: " + _score);
             }
         });
+#endif
     }
 }

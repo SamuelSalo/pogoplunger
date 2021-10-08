@@ -8,7 +8,7 @@ public class Floor : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player"))
         {
-            transform.Translate(0, -5, 0);
+            transform.Translate(0, -10, 0);
         }
     }
 }

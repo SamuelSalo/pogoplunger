@@ -23,15 +23,26 @@ public class ProtoMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("Pad"))
+        Collider2D[] hits = Physics2D.OverlapBoxAll((Vector2)transform.position - new Vector2(0, 0.8f), new Vector2(0.875f, 0.2f), 0f);
+        bool hit = false;
+        foreach(Collider2D coll in hits)
         {
-            rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
+            if (coll.transform.CompareTag("Pad") || coll.transform.CompareTag("Floor")) hit = true;
         }
-        if(collision.transform.CompareTag("Floor"))
+
+        if (hit)
         {
-            rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
-            GameManager.instance.AddScore();
+            if (collision.transform.CompareTag("Pad"))
+            {
+                rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
+            }
+            if (collision.transform.CompareTag("Floor"))
+            {
+                rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
+                GameManager.instance.AddScore();
+            }
         }
+        
     }
 
     public void Up()
