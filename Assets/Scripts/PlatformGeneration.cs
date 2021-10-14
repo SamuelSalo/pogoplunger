@@ -8,21 +8,27 @@ public class PlatformGeneration : MonoBehaviour
     private bool generated = false;
     static int platformCount;
     static int maxPlatformCount = 5;
+    public bool moving;
 
-    public GameObject platformPrefab;
+    private GameObject platformPrefab, movingPlatformPrefab;
     public static List<GameObject> platforms;
 
-    private void Reset(Scene scene, LoadSceneMode mode)
+    private void ResetGame(Scene scene, LoadSceneMode mode)
     {
         platformCount = 0;
     }
 
     private void Start()
     {
-        SceneManager.sceneLoaded += Reset;
+        platformPrefab = Resources.Load<GameObject>("Platform");
+        movingPlatformPrefab = Resources.Load<GameObject>("MovingPlatform");
+        SceneManager.sceneLoaded += ResetGame;
 
-        if (platformCount != 0)
-            transform.position = new Vector2(Random.Range(-1.8f, 1.8f), transform.position.y);
+        if (platformCount != 0 && !moving)
+            transform.parent.position = new Vector2(Random.Range(-1.8f, 1.8f), transform.parent.position.y);
+        else if (moving)
+            transform.parent.position = new Vector2(0, transform.parent.position.y);
+
         else
         {
             platforms = new List<GameObject>();
@@ -38,7 +44,24 @@ public class PlatformGeneration : MonoBehaviour
     private void BuildPlatform()
     {
         platformCount++;
-        var platform = Instantiate(platformPrefab, (Vector2)transform.position + new Vector2(0, -5), Quaternion.identity);
+        GameObject platPrefab;
+        
+        if(GameManager.instance.CurrentScore < 6)
+        {
+            platPrefab = platformPrefab;
+        }
+        else
+        {
+            var rng = Random.Range(0, 101);
+            if (rng > 70)
+            {
+                platPrefab = movingPlatformPrefab;
+            }
+            else
+                platPrefab = platformPrefab;
+        }
+
+        var platform = Instantiate(platPrefab, (Vector2)transform.parent.position - new Vector2(0, 5), Quaternion.identity);
         platforms.Add(platform);
     }
 
@@ -52,7 +75,7 @@ public class PlatformGeneration : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<DeathTrigger>().passable = true;
 
-        if (platforms.IndexOf(gameObject) == 3 && !generated)
+        if (platforms.IndexOf(transform.parent.gameObject) == 3 && !generated)
         {
             generated = true;
             var rem = platforms[0];
@@ -60,7 +83,7 @@ public class PlatformGeneration : MonoBehaviour
             Destroy(rem);
 
             platforms.ShiftLeft(1);
-            platforms[4].GetComponent<PlatformGeneration>().BuildPlatform();
+            platforms[4].transform.GetChild(0).GetComponent<PlatformGeneration>().BuildPlatform();
         }
     }
 }

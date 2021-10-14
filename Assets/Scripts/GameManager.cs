@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private int currentScore = 0;
+    public int CurrentScore { get; private set; }
     public TMP_Text scoreText;
     public TMP_Text highscoreText;
     public GameObject deathMenu;
@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore()
     {
-        currentScore++;
-        scoreText.text = currentScore.ToString();
+        CurrentScore++;
+        scoreText.text = CurrentScore.ToString();
     }
 
     public void Death()
@@ -66,23 +66,23 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("PogoPlunger_Highscore"))
         {
-            if (PlayerPrefs.GetInt("PogoPlunger_Highscore") < currentScore)
+            if (PlayerPrefs.GetInt("PogoPlunger_Highscore") < CurrentScore)
             {
-                PlayerPrefs.SetInt("PogoPlunger_Highscore", currentScore);
-                PlayServices.PostLeaderboardScore(currentScore);
+                PlayerPrefs.SetInt("PogoPlunger_Highscore", CurrentScore);
+                PlayServices.PostLeaderboardScore(CurrentScore);
                 //todo new highscore fx
             }
         }
         else
         {
-            PlayerPrefs.SetInt("PogoPlunger_Highscore", currentScore);
-            PlayServices.PostLeaderboardScore(currentScore);
+            PlayerPrefs.SetInt("PogoPlunger_Highscore", CurrentScore);
+            PlayServices.PostLeaderboardScore(CurrentScore);
             //todo new highscore fx
         }
 
         AnalyticsResult result = Analytics.CustomEvent("gameOver", new Dictionary<string, object>
         {
-            { "Points", currentScore}
+            { "Points", CurrentScore}
         });
 
         Debug.Log("Analytics Result: " + result);
