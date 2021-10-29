@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class MainMenu : MonoBehaviour
 {
@@ -21,5 +23,15 @@ public class MainMenu : MonoBehaviour
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void OpenLeaderboard()
+    {
+        PlayGamesPlatform.Instance.ShowLeaderboardUI("CgkI9syNqfAYEAIQAA");
+    }
+
+    public void SignOut()
+    {
+        PlayServices.SignOut();
     }
 }

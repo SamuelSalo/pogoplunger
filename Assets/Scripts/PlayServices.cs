@@ -4,6 +4,7 @@ using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using GoogleMobileAds.Api;
+using System;
 
 public class PlayServices
 {
@@ -30,6 +31,11 @@ public class PlayServices
         });
 
         MobileAds.Initialize(initStatus => { });
+    }
+
+    public static void SignOut()
+    {
+        PlayGamesPlatform.Instance.SignOut();
     }
 
     public static void PostLeaderboardScore(int _score)
