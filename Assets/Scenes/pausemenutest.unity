@@ -310,7 +310,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 227380627}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: slidermovementtest, Assembly-CSharp
           m_MethodName: resetSlider
           m_Mode: 1
@@ -741,7 +741,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &227380625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -817,9 +817,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 227380622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f785a1ac47ee0d44881bd0f0b5e5f1f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 198e714258541c14ba6ec40c9e603f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 20
 --- !u!1 &285810286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2940,7 +2941,6 @@ GameObject:
   - component: {fileID: 1997693147}
   - component: {fileID: 1997693146}
   - component: {fileID: 1997693145}
-  - component: {fileID: 1997693148}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3013,20 +3013,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1997693148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997693144}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adacc84775bbf2c42809187d6b5d8a75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 300
-  character: {fileID: 227380622}
 --- !u!1 &2022472908
 GameObject:
   m_ObjectHideFlags: 0

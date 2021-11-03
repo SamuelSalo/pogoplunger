@@ -23,49 +23,49 @@ public class slidermovementtest : MonoBehaviour
     //public float runSpeed = 10f;
 
     //float horizontalMove = 0f;
-   
+
 
     // Update is called once per frame
-   //private void Update()
-   // {
+    //private void Update()
+    // {
 
-   //     if (Input.touchCount > 0)
-   //     {
-   //         Touch touch = Input.GetTouch(0);
-   //         touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-            
-   //         direction = (touchPosition - transform.position);
-   //         rb.velocity = new Vector2(direction.x, direction.y) * moveSpeed;
+    //     if (Input.touchCount > 0)
+    //     {
+    //         Touch touch = Input.GetTouch(0);
+    //         touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
-   //         if (touch.phase == TouchPhase.Ended)
-   //             rb.velocity = Vector2.zero;
-                
-   //     }
-        //float movement = slider.value;
+    //         direction = (touchPosition - transform.position);
+    //         rb.velocity = new Vector2(direction.x, direction.y) * moveSpeed;
 
-        //horizontalMove = slider.Horizontal * runSpeed;
+    //         if (touch.phase == TouchPhase.Ended)
+    //             rb.velocity = Vector2.zero;
+
+    //     }
+    //float movement = slider.value;
+
+    //horizontalMove = slider.Horizontal * runSpeed;
 
 
-        //player.transform.position = new Vector3(movement, 0, 0) * movementSpeedPlayer * Time.deltaTime;
+    //player.transform.position = new Vector3(movement, 0, 0) * movementSpeedPlayer * Time.deltaTime;
 
-        //// player faces where moves
-        //if(slider.value == 0)
-        //{
-        //    player.transform.rotation = player.transform.rotation;
+    //// player faces where moves
+    //if(slider.value == 0)
+    //{
+    //    player.transform.rotation = player.transform.rotation;
 
-        //}
-        //else if (slider.value < 0)
-        //{
-        //    player.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //}
-        //else if(slider.value > 0)
-        //{
-        //    player.transform.rotation = Quaternion.Euler(0, 1, 0);
-        //}
-    }
+    //}
+    //else if (slider.value < 0)
+    //{
+    //    player.transform.rotation = Quaternion.Euler(0, 0, 0);
+    //}
+    //else if(slider.value > 0)
+    //{
+    //    player.transform.rotation = Quaternion.Euler(0, 1, 0);
+    //}
+}
 
     //public void resetSlider()
     //{
     //    slider.value = 0;
     //}
-}
+
