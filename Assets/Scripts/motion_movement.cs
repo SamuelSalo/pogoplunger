@@ -16,7 +16,7 @@ public class motion_movement : MonoBehaviour
 
     void Update()
     {
-        movement = new Vector2(Input.acceleration.x, Input.acceleration.y) * movementSpeed;
+        movement = new Vector2(Input.acceleration.x, 0f) * movementSpeed;
         rigid.AddForce(movement);
     }
 
