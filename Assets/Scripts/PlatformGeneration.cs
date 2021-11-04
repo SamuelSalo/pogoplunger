@@ -10,7 +10,6 @@ public class PlatformGeneration : MonoBehaviour
     static int maxPlatformCount = 5;
     public bool moving;
 
-    private GameObject platformPrefab, movingPlatformPrefab;
     public static List<GameObject> platforms;
 
     private void ResetGame(Scene scene, LoadSceneMode mode)
@@ -20,8 +19,8 @@ public class PlatformGeneration : MonoBehaviour
 
     private void Start()
     {
-        platformPrefab = Resources.Load<GameObject>("Platform");
-        movingPlatformPrefab = Resources.Load<GameObject>("MovingPlatform");
+
+
         SceneManager.sceneLoaded += ResetGame;
 
         if (platformCount != 0 && !moving)
@@ -48,17 +47,31 @@ public class PlatformGeneration : MonoBehaviour
         
         if(GameManager.instance.CurrentScore < 6)
         {
-            platPrefab = platformPrefab;
+            platPrefab = Resources.Load<GameObject>("Platform");
+        }
+        else if ( GameManager.instance.CurrentScore < 10)
+        {
+            var rng = Random.Range(0, 101);
+            if (rng > 80)
+            {
+                platPrefab = Resources.Load<GameObject>("MovingPlatform");
+            }
+            else
+                platPrefab = Resources.Load<GameObject>("Platform");
         }
         else
         {
             var rng = Random.Range(0, 101);
-            if (rng > 70)
+            if (rng > 60 && rng < 80)
             {
-                platPrefab = movingPlatformPrefab;
+                platPrefab = Resources.Load<GameObject>("MovingPlatform");
+            }
+            else if (rng > 80)
+            {
+                platPrefab = Random.Range(0, 100) > 50 ? Resources.Load<GameObject>("SpikePlatformLeft") : Resources.Load<GameObject>("SpikePlatformRight");
             }
             else
-                platPrefab = platformPrefab;
+                platPrefab = Resources.Load<GameObject>("Platform");
         }
 
         var platform = Instantiate(platPrefab, (Vector2)transform.parent.position - new Vector2(0, 5), Quaternion.identity);
