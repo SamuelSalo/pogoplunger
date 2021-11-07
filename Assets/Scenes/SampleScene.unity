@@ -468,8 +468,8 @@ GameObject:
   - component: {fileID: 621759125}
   - component: {fileID: 621759124}
   - component: {fileID: 621759123}
-  - component: {fileID: 621759127}
   - component: {fileID: 621759128}
+  - component: {fileID: 621759127}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -598,13 +598,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 621759122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dff7f438375e72e4198adc91de6e22cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 51a56af6b80dd704f90f2fef3a99713c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: 10
   moveForce: 6
   smoothTime: 0.1
-  input: 0
 --- !u!95 &621759128
 Animator:
   serializedVersion: 3
@@ -721,7 +720,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 621759127}
-          m_TargetAssemblyTypeName: ProtoMovement, Assembly-CSharp
+          m_TargetAssemblyTypeName: CombinedMovementFinal, Assembly-CSharp
           m_MethodName: Left
           m_Mode: 1
           m_Arguments:
@@ -737,7 +736,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 621759127}
-          m_TargetAssemblyTypeName: ProtoMovement, Assembly-CSharp
+          m_TargetAssemblyTypeName: CombinedMovementFinal, Assembly-CSharp
           m_MethodName: Up
           m_Mode: 1
           m_Arguments:
@@ -2073,7 +2072,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 621759127}
-          m_TargetAssemblyTypeName: ProtoMovement, Assembly-CSharp
+          m_TargetAssemblyTypeName: CombinedMovementFinal, Assembly-CSharp
           m_MethodName: Right
           m_Mode: 1
           m_Arguments:
@@ -2089,7 +2088,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 621759127}
-          m_TargetAssemblyTypeName: ProtoMovement, Assembly-CSharp
+          m_TargetAssemblyTypeName: CombinedMovementFinal, Assembly-CSharp
           m_MethodName: Up
           m_Mode: 1
           m_Arguments:

@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-  
+    public Toggle motionControlsToggle;
+
+    private void Awake()
+    {
+        motionControlsToggle.isOn = System.Convert.ToBoolean(PlayerPrefs.GetInt("PogoPlunger_MotionControls", 0));
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -23,6 +26,11 @@ public class MainMenu : MonoBehaviour
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void ToggleMotionControls(bool value)
+    {
+        PlayerPrefs.SetInt("PogoPlunger_MotionControls", System.Convert.ToInt32(value));
     }
 
     public void OpenLeaderboard()
