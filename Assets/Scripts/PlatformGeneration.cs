@@ -78,12 +78,6 @@ public class PlatformGeneration : MonoBehaviour
         platforms.Add(platform);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-            CreatePlatform();
-    }
-
     public void CreatePlatform()
     {
         transform.GetChild(0).GetComponent<DeathTrigger>().passable = true;
