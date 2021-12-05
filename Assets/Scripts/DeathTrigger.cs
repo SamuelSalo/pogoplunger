@@ -9,7 +9,7 @@ public class DeathTrigger : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player") && !passable)
         {
-            GameManager.instance.Death();
+            collision.transform.GetComponent<CombinedMovementFinal>().Death();
             transform.parent.GetComponent<PlatformGeneration>().CreatePlatform();
             passable = true;
         }

@@ -19,12 +19,10 @@ public class PlatformGeneration : MonoBehaviour
 
     private void Start()
     {
-
-
         SceneManager.sceneLoaded += ResetGame;
 
         if (platformCount != 0 && !moving)
-            transform.parent.position = new Vector2(Random.Range(-1.8f, 1.8f), transform.parent.position.y);
+            transform.parent.position = new Vector2(Random.Range(-1.7f, 1.7f), transform.parent.position.y);
         else if (moving)
             transform.parent.position = new Vector2(0, transform.parent.position.y);
 
@@ -45,30 +43,30 @@ public class PlatformGeneration : MonoBehaviour
         platformCount++;
         GameObject platPrefab;
         
-        if(GameManager.instance.CurrentScore < 6)
+        if(GameManager.instance.CurrentScore < 5)
         {
             platPrefab = Resources.Load<GameObject>("Platform");
         }
         else if ( GameManager.instance.CurrentScore < 10)
         {
-            var rng = Random.Range(0, 101);
-            if (rng > 80)
+            var rng = Random.Range(0, 11);
+            if (rng >= 6)
             {
-                platPrefab = Resources.Load<GameObject>("MovingPlatform");
+                platPrefab = Random.Range(0, 10) > 5 ? Resources.Load<GameObject>("MovingPlatform") : Resources.Load<GameObject>("BrokenPlatform");
             }
             else
                 platPrefab = Resources.Load<GameObject>("Platform");
         }
         else
         {
-            var rng = Random.Range(0, 101);
-            if (rng > 60 && rng < 80)
+            var rng = Random.Range(0, 11);
+            if (rng >= 5 && rng < 8) 
             {
-                platPrefab = Resources.Load<GameObject>("MovingPlatform");
+                platPrefab = Random.Range(0, 10) > 5 ? Resources.Load<GameObject>("MovingPlatform") : Resources.Load<GameObject>("BrokenPlatform");
             }
-            else if (rng > 80)
+            else if (rng >= 8)
             {
-                platPrefab = Random.Range(0, 100) > 50 ? Resources.Load<GameObject>("SpikePlatformLeft") : Resources.Load<GameObject>("SpikePlatformRight");
+                platPrefab = Random.Range(0, 10) > 5 ? Resources.Load<GameObject>("SpikePlatformLeft") : Resources.Load<GameObject>("SpikePlatformRight");
             }
             else
                 platPrefab = Resources.Load<GameObject>("Platform");

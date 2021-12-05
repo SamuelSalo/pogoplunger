@@ -6,7 +6,8 @@ public class Spike : MonoBehaviour
     {
         if(col.transform.CompareTag("Player"))
         {
-            GameManager.instance.Death();
+            col.gameObject.GetComponent<CombinedMovementFinal>().Death();
+
         }
     }
 }

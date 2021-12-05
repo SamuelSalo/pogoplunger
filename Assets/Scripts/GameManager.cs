@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text highscoreText;
     public GameObject deathMenu;
     public GameObject gameUI;
-    public Rigidbody2D player;
+    public CombinedMovementFinal player;
 
     private void Start()
     {
@@ -40,13 +40,12 @@ public class GameManager : MonoBehaviour
     {
         deathMenu.SetActive(true);
         gameUI.SetActive(false);
-        player.constraints = RigidbodyConstraints2D.FreezeAll;
         AdManager.instance.ShowDeathInterstitial();
     }
 
     public void Resume()
     {
-        player.constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.Revive();
         deathMenu.SetActive(false);
         gameUI.SetActive(true);
     }
