@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1886049189628783740}
   - component: {fileID: 6430544439438739762}
   - component: {fileID: 1886049189628783733}
-  - component: {fileID: 1886049189628783732}
+  - component: {fileID: 2622301726003426317}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Pad
@@ -163,7 +163,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1886049189628783732
+--- !u!114 &2622301726003426317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
