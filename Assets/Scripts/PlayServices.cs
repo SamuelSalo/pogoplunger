@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
@@ -9,12 +10,9 @@ using System;
 public class PlayServices
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void Login()
+   static void Login()
     {
-        
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
-            SignInStatus status = result;
-
             string errMsg = result switch
             {
                 SignInStatus.Success => "Sign in succeeded",
@@ -26,10 +24,11 @@ public class PlayServices
                 SignInStatus.AlreadyInProgress => "Sign in already in progress",
                 SignInStatus.Failed => "Sign in failed with unknown reason. Check adb log!",
                 SignInStatus.NotAuthenticated => "Not authenticated! Sign in!",
-                _ => throw new System.NotImplementedException(),
+                _ => throw new NotImplementedException(),
             };
-        });
 
+            Debug.Log(errMsg);
+        });
         MobileAds.Initialize(initStatus => { });
     }
 

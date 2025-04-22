@@ -19,7 +19,7 @@ public class AdManager : MonoBehaviour
     #endregion
 
     private readonly string testInterstitialUnitID = "ca-app-pub-3940256099942544/1033173712";
-    private readonly string testRewardedUnitID = "ca-app-pub-3940256099942544/5224354917";
+    private readonly string testRewardedUnitID = "ca-app-pub-3940256099942544/5354046379";
 
     private InterstitialAd onDeathInterstitialAd;
     private RewardedAd resumeVideoAd;
